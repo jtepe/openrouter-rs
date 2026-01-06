@@ -110,3 +110,28 @@ fn test_response_deserialization() {
         panic!("Expected output message");
     }
 }
+
+#[test]
+fn test_input_item_ordering() {
+    let json_data = r#"
+    {
+        "id": "msg-123",
+        "type": "message",
+        "role": "user",
+        "content": [{"type": "input_text", "text": "Hello"}]
+    }
+    "#;
+
+    let item: InputItem = serde_json::from_str(json_data).expect("Failed to deserialize InputMessageItem");
+
+    match item {
+        InputItem::InputMessage(msg) => {
+            assert_eq!(msg.id, Some("msg-123".to_string()));
+            assert_eq!(msg.content.len(), 1);
+        },
+        InputItem::EasyInputMessage(_) => {
+            panic!("Deserialized as EasyInputMessage but expected InputMessageItem because 'id' is present");
+        },
+        _ => panic!("Deserialized to unexpected variant"),
+    }
+}
