@@ -65,7 +65,7 @@ fn test_response_deserialization() {
     {
       "id": "gen-123",
       "object": "response",
-      "created_at": 1678900000.0,
+      "created_at": 1678900000,
       "model": "anthropic/claude-v1",
       "status": "completed",
       "output": [
@@ -83,11 +83,11 @@ fn test_response_deserialization() {
         }
       ],
       "usage": {
-        "input_tokens": 10.0,
-        "input_tokens_details": { "cached_tokens": 0.0 },
-        "output_tokens": 20.0,
-        "output_tokens_details": { "reasoning_tokens": 0.0 },
-        "total_tokens": 30.0,
+        "input_tokens": 10,
+        "input_tokens_details": { "cached_tokens": 0 },
+        "output_tokens": 20,
+        "output_tokens_details": { "reasoning_tokens": 0 },
+        "total_tokens": 30,
         "upstream_inference_input_cost": 0.0,
         "upstream_inference_output_cost": 0.0
       },
