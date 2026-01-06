@@ -286,17 +286,17 @@ pub enum Annotation {
     FileCitation {
         file_id: String,
         filename: String,
-        index: f64,
+        index: u32,
     },
     UrlCitation {
         url: String,
         title: String,
-        start_index: f64,
-        end_index: f64,
+        start_index: u32,
+        end_index: u32,
     },
     FilePath {
         file_id: String,
-        index: f64,
+        index: u32,
     },
 }
 
@@ -579,7 +579,7 @@ pub enum ResponseTextVerbosity {
 pub struct ReasoningConfig {
     pub effort: ReasoningEffort,
     pub summary: ReasoningSummaryVerbosity,
-    pub max_tokens: Option<f64>,
+    pub max_tokens: Option<u32>,
     pub enabled: Option<bool>,
 }
 
@@ -829,7 +829,7 @@ pub struct Response {
     pub id: String,
     /// OpenAiResponsesNonStreamingResponseObject
     pub object: String, // "response"
-    pub created_at: f64,
+    pub created_at: u64,
     pub model: String,
     /// OpenAIResponsesResponseStatus
     pub status: ResponseStatus,
@@ -841,9 +841,9 @@ pub struct Response {
     pub error: Option<ErrorField>,
     pub incomplete_details: Option<IncompleteDetails>,
     pub usage: Option<Usage>,
-    pub max_tool_calls: Option<f64>,
-    pub top_logprobs: Option<f64>,
-    pub max_output_tokens: Option<f64>,
+    pub max_tool_calls: Option<u32>,
+    pub top_logprobs: Option<u32>,
+    pub max_output_tokens: Option<u32>,
     pub temperature: Option<f64>,
     pub top_p: Option<f64>,
     pub instructions: Option<Input>,
@@ -934,11 +934,11 @@ pub enum IncompleteDetailsReason {
 #[skip_serializing_none]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Usage {
-    pub input_tokens: f64,
+    pub input_tokens: u32,
     pub input_tokens_details: InputTokensDetails,
-    pub output_tokens: f64,
+    pub output_tokens: u32,
     pub output_tokens_details: OutputTokensDetails,
-    pub total_tokens: f64,
+    pub total_tokens: u32,
     pub cost: Option<f64>,
     pub is_byok: Option<bool>,
     pub cost_details: Option<CostDetails>,
@@ -947,13 +947,13 @@ pub struct Usage {
 /// OpenAiResponsesUsageInputTokensDetails
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct InputTokensDetails {
-    pub cached_tokens: f64,
+    pub cached_tokens: u32,
 }
 
 /// OpenAiResponsesUsageOutputTokensDetails
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OutputTokensDetails {
-    pub reasoning_tokens: f64,
+    pub reasoning_tokens: u32,
 }
 
 /// OpenResponsesUsageCostDetails
